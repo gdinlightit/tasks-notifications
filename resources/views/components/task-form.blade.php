@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="mb-4">Task Management</h2>
-    <form id="taskForm" action="{{ route('tasks') }}" method="POST">
+    <form id="taskForm" action="{{ route('tasks.store') }}" method="POST">
         @csrf
 
         <div class="form-group">
@@ -62,7 +62,7 @@
 
             select.innerHTML = '<option value="">Select Employee</option>';
 
-            fetch('/employees', {
+            fetch('{{ route('employees.index') }}', {
                     headers: {
                         'Accept': 'application/json',
                         'X-Requested-With': 'XMLHttpRequest'
@@ -89,7 +89,7 @@
     function loadTasks(select) {
         if (tasksLoaded) return;
 
-        fetch('/tasks', {
+        fetch('{{ route('tasks.index') }}', {
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -120,7 +120,7 @@
             return;
         }
 
-        fetch(`/tasks/${taskId}`, {
+        fetch(`{{ route('tasks.show', '') }}/${taskId}`, {
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -135,7 +135,7 @@
 
                 const employeeSelect = document.querySelector('select[name="employee_id"]');
                 await loadEmployees(employeeSelect);
-                employeeSelect.value = task.employee_id;
+                employeeSelect.value = task.employee.id;
             })
             .catch(error => console.error('Error loading task details:', error));
     }
@@ -153,20 +153,26 @@
     document.getElementById('taskForm').addEventListener('submit', function(e) {
         e.preventDefault();
         const formData = new FormData(this);
-        const action = formData.get('action');
 
-        if (action === 'update') {
-            const taskId = formData.get('task_id');
-            formData.append('id', taskId);
-        }
+        const action = formData.get('action');
+        const taskId = formData.get('task_id');
+        formData.delete('action');
         formData.delete('task_id');
 
-        fetch('{{ route('tasks') }}', {
-                method: 'POST',
-                body: formData,
+        const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+        const url = action === 'update' ?
+            '{{ route('tasks.update', '') }}/' + taskId :
+            '{{ route('tasks.store') }}';
+
+        fetch(url, {
+                method: action === 'update' ? 'PATCH' : 'POST',
+                body: JSON.stringify(Object.fromEntries(formData)),
                 headers: {
                     'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest'
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRF-TOKEN': token,
+                    'Content-Type': 'application/json' // probando
                 }
             })
             .then(response => response.json())
@@ -174,7 +180,7 @@
                 // Switch to task tab
                 document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
                 document.querySelectorAll('.component-container').forEach(c => c.classList.remove(
-                'active'));
+                    'active'));
 
                 document.querySelector('[data-component="task"]').classList.add('active');
                 document.getElementById('task-component').classList.add('active');
