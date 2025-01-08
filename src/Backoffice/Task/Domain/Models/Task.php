@@ -7,15 +7,16 @@ namespace Lightit\Backoffice\Task\Domain\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Lightit\Backoffice\Employee\Domain\Models\Employee;
+use Lightit\Shared\App\Timestampable;
 
 /**
- * @property int                             $id
- * @property string                          $title
- * @property string                          $description
- * @property string                          $status
- * @property int                             $employee_id
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int                        $id
+ * @property string                     $title
+ * @property string                     $description
+ * @property string                     $status
+ * @property int                        $employee_id
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read Employee $employee
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Task newModelQuery()
@@ -31,7 +32,7 @@ use Lightit\Backoffice\Employee\Domain\Models\Employee;
  *
  * @mixin \Eloquent
  */
-class Task extends Model
+class Task extends Model implements Timestampable
 {
     protected $fillable = [
         'title',

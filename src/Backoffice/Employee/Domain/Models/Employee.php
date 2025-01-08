@@ -6,16 +6,17 @@ namespace Lightit\Backoffice\Employee\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Notifications\Notifiable;
 use Lightit\Backoffice\Task\Domain\Models\Task;
+use Lightit\Shared\App\Timestampable;
 
 /**
- * @property int                             $id
- * @property string                          $name
- * @property string                          $email
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property int                        $id
+ * @property string                     $name
+ * @property string                     $email
+ * @property \Illuminate\Support\Carbon $created_at
+ * @property \Illuminate\Support\Carbon $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, Task> $tasks
- * @property-read int|null $tasks_count
  *
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee newQuery()
@@ -26,10 +27,15 @@ use Lightit\Backoffice\Task\Domain\Models\Task;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Employee whereUpdatedAt($value)
  *
+ * @property-read \Illuminate\Notifications\DatabaseNotificationCollection<int, \Illuminate\Notifications\DatabaseNotification> $notifications
+ * @property-read int|null $notifications_count
+ *
  * @mixin \Eloquent
  */
-class Employee extends Model
+class Employee extends Model implements Timestampable
 {
+    use Notifiable;
+
     protected $fillable = [
         'name',
         'email',
