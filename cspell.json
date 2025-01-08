@@ -92,6 +92,8 @@
     "Worksome",
     "xdebug",
     "yourserver",
-    "zustand"
+    "zustand",
+    "Timestampable",
+    "Assertable"
   ]
 }

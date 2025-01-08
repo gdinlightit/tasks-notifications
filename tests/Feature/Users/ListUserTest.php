@@ -16,7 +16,7 @@ describe('users', function () {
         $users = UserFactory::new()
             ->createMany(5);
 
-        getJson(url('/api/users'))
+        getJson(url('/api/v1/users'))
             ->assertSuccessful()
             ->assertJson(
                 fn (AssertableJson $json) =>
