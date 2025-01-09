@@ -17,6 +17,6 @@ class ListEmployeeController
 
         return responder()
             ->success($employee, EmployeeTransformer::class)
-            ->respond(JsonResponse::HTTP_CREATED);
+            ->respond();
     }
 }

@@ -10,7 +10,7 @@ use Lightit\Backoffice\Task\Domain\Models\Task;
 
 class UpdateTaskAction
 {
-public function execute(Task $task, TaskDto $taskDto): Task
+    public function execute(Task $task, TaskDto $taskDto): Task
     {
         $previousEmployeeId = $task->employee_id;
 
@@ -18,14 +18,14 @@ public function execute(Task $task, TaskDto $taskDto): Task
             'title' => $taskDto->title,
             'description' => $taskDto->description,
             'status' => $taskDto->status,
-            'employee_id' => $taskDto->employee->id,
+            'employee_id' => $taskDto->employee_id,
         ]);
 
         $this->notifyNewEmployee($task, $previousEmployeeId);
 
         return $task;
     }
-    
+
     private function notifyNewEmployee(Task $updatedTask, int $previousEmployeeId): void
     {
         if ($previousEmployeeId !== $updatedTask->employee_id) {
