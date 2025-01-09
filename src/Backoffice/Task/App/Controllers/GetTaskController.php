@@ -8,7 +8,7 @@ use Illuminate\Http\JsonResponse;
 use Lightit\Backoffice\Task\App\Transformers\TaskTransformer;
 use Lightit\Backoffice\Task\Domain\Models\Task;
 
-class ShowTaskController
+class GetTaskController
 {
     public function __invoke(
         Task $task,

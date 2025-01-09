@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Lightit\Backoffice\Employee\App\Controllers\ListEmployeeController;
 use Lightit\Backoffice\Employee\App\Controllers\StoreEmployeeController;
 use Lightit\Backoffice\Task\App\Controllers\ListTaskController;
-use Lightit\Backoffice\Task\App\Controllers\ShowTaskController;
+use Lightit\Backoffice\Task\App\Controllers\GetTaskController;
 use Lightit\Backoffice\Task\App\Controllers\StoreTaskController;
 use Lightit\Backoffice\Task\App\Controllers\UpdateTaskController;
 use Lightit\Backoffice\Users\App\Controllers\DeleteUserController;
@@ -52,7 +52,7 @@ Route::prefix('v1')
             ->name('tasks.')
             ->group(static function () {
                 Route::get('/', ListTaskController::class)->name('index');
-                Route::get('/{task}', ShowTaskController::class)->name('show');
+                Route::get('/{task}', GetTaskController::class)->name('show');
                 Route::post('/', StoreTaskController::class)->name('store');
                 Route::patch('/{task}', UpdateTaskController::class)->name('update');
             });
