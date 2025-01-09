@@ -43,7 +43,7 @@ class StoreTaskRequest extends FormRequest
         return new TaskDto(
             title: $this->string(self::TITLE)->toString(),
             description: $this->string(self::DESCRIPTION)->toString(),
-            status: $this->enum(self::STATUS)
+            status: $this->enum(self::STATUS, TaskStatus::class),
             employee_id: $this->integer(self::EMPLOYEE_ID),
         );
     }

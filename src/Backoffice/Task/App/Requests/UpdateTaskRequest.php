@@ -43,7 +43,7 @@ class UpdateTaskRequest extends FormRequest
         return new TaskDto(
             title: $this->has(self::TITLE) ? $this->string(self::TITLE)->toString() : null,
             description: $this->has(self::DESCRIPTION) ? $this->string(self::DESCRIPTION)->toString() : null,
-            status: $this->has(self::STATUS) ? TaskStatus::from($this->string(self::STATUS)->toString()) : null,
+            status: $this->has(self::STATUS) ? $this->enum(self::STATUS, TaskStatus::class) : null,
             employee_id: $this->has(self::EMPLOYEE_ID) ? $this->integer(self::EMPLOYEE_ID) : null,
         );
     }
