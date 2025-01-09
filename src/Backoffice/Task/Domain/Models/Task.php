@@ -34,12 +34,7 @@ use Lightit\Shared\App\Timestampable;
  */
 class Task extends Model implements Timestampable
 {
-    protected $fillable = [
-        'title',
-        'description',
-        'status',
-        'employee_id',
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @return BelongsTo<Employee, $this>
