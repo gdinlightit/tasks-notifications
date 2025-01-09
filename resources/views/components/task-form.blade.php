@@ -1,6 +1,6 @@
 <div class="form-container">
     <h2 class="mb-4">Task Management</h2>
-    <form id="taskForm" action="{{ route('tasks.store') }}" method="POST">
+    <form id="taskForm" action="{{ route('api.tasks.store') }}" method="POST">
         @csrf
 
         <div class="form-group">
@@ -62,7 +62,7 @@
 
             select.innerHTML = '<option value="">Select Employee</option>';
 
-            fetch('{{ route('employees.index') }}', {
+            fetch('{{ route('api.employees.index') }}', {
                     headers: {
                         'Accept': 'application/json',
                         'X-Requested-With': 'XMLHttpRequest'
@@ -89,7 +89,7 @@
     function loadTasks(select) {
         if (tasksLoaded) return;
 
-        fetch('{{ route('tasks.index') }}', {
+        fetch('{{ route('api.tasks.index') }}', {
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -120,7 +120,7 @@
             return;
         }
 
-        fetch(`{{ route('tasks.show', '') }}/${taskId}`, {
+        fetch(`{{ route('api.tasks.show', '') }}/${taskId}`, {
                 headers: {
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest'
@@ -162,8 +162,8 @@
         const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         const url = action === 'update' ?
-            '{{ route('tasks.update', '') }}/' + taskId :
-            '{{ route('tasks.store') }}';
+            '{{ route('api.tasks.update', '') }}/' + taskId :
+            '{{ route('api.tasks.store') }}';
 
         fetch(url, {
                 method: action === 'update' ? 'PATCH' : 'POST',
@@ -172,7 +172,7 @@
                     'Accept': 'application/json',
                     'X-Requested-With': 'XMLHttpRequest',
                     'X-CSRF-TOKEN': token,
-                    'Content-Type': 'application/json' // probando
+                    'Content-Type': 'application/json'
                 }
             })
             .then(response => response.json())

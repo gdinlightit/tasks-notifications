@@ -1,7 +1,7 @@
 <div class="form-container">
     <h2 class="mb-4">Create New Employee</h2>
     <div id="success-message" class="alert alert-success" style="display: none;"></div>
-    <form action="{{ route('employees.store') }}" method="POST" id="employee-form">
+    <form action="{{ route('api.employees.store') }}" method="POST" id="employee-form">
         @csrf
         <div class="form-group">
             <label for="name">Name</label>
@@ -26,7 +26,7 @@
         document.getElementById('employee-form').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            fetch('{{ route('employees.store') }}', {
+            fetch('{{ route('api.employees.store') }}', {
                     method: 'POST',
                     body: new FormData(this),
                     headers: {
