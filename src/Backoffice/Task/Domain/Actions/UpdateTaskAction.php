@@ -10,28 +10,26 @@ use Lightit\Backoffice\Task\Domain\Models\Task;
 
 class UpdateTaskAction
 {
-    public function execute(Task $task, TaskDto $dto): Task
+public function execute(Task $task, TaskDto $taskDto): Task
     {
         $previousEmployeeId = $task->employee_id;
-        $previousEmployee = $task->employee;
 
-        $task->fill($dto->toArray());
+        $task->updateOrFail([
+            'title' => $taskDto->title,
+            'description' => $taskDto->description,
+            'status' => $taskDto->status,
+            'employee_id' => $taskDto->employee->id,
+        ]);
 
-        if ($task->isDirty('employee_id') && $previousEmployeeId !== $task->employee_id) {
-            // notify the newly assigned employee
-            $newEmployee = $task->employee()->firstOrFail();
-
-            $newEmployee->notify(
-                new TaskAssignmentNotification(
-                    task: $task,
-                    isReassignment: true,
-                    previousEmployee: $previousEmployee
-                )
-            );
-        }
-
-        $task->saveOrFail();
+        $this->notifyNewEmployee($task, $previousEmployeeId);
 
         return $task;
+    }
+    
+    private function notifyNewEmployee(Task $updatedTask, int $previousEmployeeId): void
+    {
+        if ($previousEmployeeId !== $updatedTask->employee_id) {
+            $updatedTask->employee->notify(new TaskAssignmentNotification($updatedTask));
+        }
     }
 }
