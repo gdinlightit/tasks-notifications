@@ -26,7 +26,7 @@ class StoreEmployeeRequest extends FormRequest
                 'required',
                 'string',
                 'email',
-                Rule::unique(Employee::class, self::EMAIL)->ignore($this->employee),
+                Rule::unique(Employee::class, self::EMAIL),
             ],
         ];
     }
