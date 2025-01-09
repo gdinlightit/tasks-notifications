@@ -15,6 +15,6 @@ class GetTaskController
     ): JsonResponse {
         return responder()
             ->success($task, TaskTransformer::class)
-            ->respond(JsonResponse::HTTP_CREATED);
+            ->respond();
     }
 }

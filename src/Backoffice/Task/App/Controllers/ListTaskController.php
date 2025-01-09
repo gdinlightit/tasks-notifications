@@ -18,6 +18,6 @@ class ListTaskController
 
         return responder()
             ->success($task, TaskTransformer::class)
-            ->respond(JsonResponse::HTTP_CREATED);
+            ->respond();
     }
 }
