@@ -15,9 +15,7 @@ class ListEmployeeAction
      */
     public function execute(): Collection
     {
-        /**
-         * @var Collection<int, Employee>
-         */
+        /** @var Collection<int, Employee> */
         $employees = QueryBuilder::for(Employee::class)
             ->latest()
             ->get();
