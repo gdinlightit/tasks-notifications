@@ -6,7 +6,7 @@ namespace Lightit\Backoffice\Employee\App\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use Lightit\Backoffice\Employee\Domain\DataTransferObjects\EmployeeDto;
+use Lightit\Backoffice\Employee\Domain\DataTransferObjects\CreateEmployeeDto;
 use Lightit\Backoffice\Employee\Domain\Models\Employee;
 
 class StoreEmployeeRequest extends FormRequest
@@ -31,9 +31,9 @@ class StoreEmployeeRequest extends FormRequest
         ];
     }
 
-    public function toDto(): EmployeeDto
+    public function toDto(): CreateEmployeeDto
     {
-        return new EmployeeDto(
+        return new CreateEmployeeDto(
             name: $this->string(self::NAME)->toString(),
             email: $this->string(self::EMAIL)->toString()
         );

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lightit\Backoffice\Employee\Domain\DataTransferObjects;
 
-readonly class EmployeeDto
+readonly class CreateEmployeeDto
 {
     public function __construct(
         public readonly string|null $name,
