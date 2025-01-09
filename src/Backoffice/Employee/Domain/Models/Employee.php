@@ -36,9 +36,8 @@ class Employee extends Model implements Timestampable
 {
     use Notifiable;
 
-    protected $fillable = [
-        'name',
-        'email',
+    protected $guarded = [
+        'id',
     ];
 
     /**
