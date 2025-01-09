@@ -12,7 +12,12 @@ class StoreTaskAction
 {
     public function execute(TaskDto $dto): Task
     {
-        $task = Task::create($dto->toArray());
+        $task = Task::create([
+            'title' => $dto->title,
+            'description' => $dto->description,
+            'status' => $dto->status?->value,
+            'employee_id' => $dto->employee_id,
+        ]);
         $task->employee->notify(new TaskAssignmentNotification($task));
 
         return $task;

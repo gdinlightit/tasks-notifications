@@ -11,15 +11,4 @@ readonly class CreateEmployeeDto
         public readonly string|null $email,
     ) {
     }
-
-    /**
-     * @return array<string, mixed>
-     */
-    public function toArray(): array
-    {
-        return array_filter([
-            'name' => $this->name,
-            'email' => $this->email,
-        ], fn ($value) => $value !== null);
-    }
 }

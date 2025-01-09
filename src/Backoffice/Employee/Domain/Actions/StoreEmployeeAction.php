@@ -11,6 +11,9 @@ class StoreEmployeeAction
 {
     public function execute(CreateEmployeeDto $dto): Employee
     {
-        return Employee::create($dto->toArray());
+        return Employee::create([
+            'name' => $dto->name,
+            'email' => $dto->email,
+        ]);
     }
 }
