@@ -8,7 +8,6 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Testing\Fluent\AssertableJson;
-use Lightit\Backoffice\Users\App\Controllers\StoreUserController;
 use Lightit\Backoffice\Users\App\Notifications\UserRegistered;
 use Lightit\Backoffice\Users\App\Transformers\UserTransformer;
 use Lightit\Backoffice\Users\Domain\Models\User;
@@ -26,7 +25,7 @@ describe('users', function () {
             'password' => 'passw0rd',
         ]);
 
-        $response = postJson(url('/api/users'), $data);
+        $response = postJson(url('/api/v1/users'), $data);
 
         $user = User::query()
             ->where('email', $data['email'])
