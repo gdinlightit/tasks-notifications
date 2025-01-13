@@ -106,8 +106,8 @@ importers:
         specifier: 0.0.31
         version: 0.0.31(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       '@sentry/types':
-        specifier: ^8.47.0
-        version: 8.47.0
+        specifier: ^8.48.0
+        version: 8.48.0
       '@storybook/addon-a11y':
         specifier: ^8.4.7
         version: 8.4.7(storybook@8.4.7(prettier@3.4.2))
@@ -2176,6 +2176,10 @@ packages:
     resolution: {integrity: sha512-iSEJZMe3DOcqBFZQAqgA3NB2lCWBc4Gv5x/SCri/TVg96wAlss4VrUunSI2Mp0J4jJ5nJcJ2ChqHSBAU48k3FA==}
     engines: {node: '>=14.18'}
 
+  '@sentry/core@8.48.0':
+    resolution: {integrity: sha512-VGwYgTfLpvJ5LRO5A+qWo1gpo6SfqaGXL9TOzVgBucAdpzbrYHpZ87sEarDVq/4275uk1b0S293/mfsskFczyw==}
+    engines: {node: '>=14.18'}
+
   '@sentry/integrations@7.114.0':
     resolution: {integrity: sha512-BJIBWXGKeIH0ifd7goxOS29fBA8BkEgVVCahs6xIOXBjX1IRS6PmX0zYx/GP23nQTfhJiubv2XPzoYOlZZmDxg==}
     engines: {node: '>=8'}
@@ -2194,8 +2198,8 @@ packages:
     resolution: {integrity: sha512-tsqkkyL3eJtptmPtT0m9W/bPLkU7ILY7nvwpi1hahA5jrM7ppoU0IMaQWAgTD+U3rzFH40IdXNBFb8Gnqcva4w==}
     engines: {node: '>=8'}
 
-  '@sentry/types@8.47.0':
-    resolution: {integrity: sha512-ruiowlIBQUPDwNcO0KTudKP9T2QYF3S2TLhDdoJb+0ZGJduH4PsgGAojUSpGR+idKfrlOSlUpcdg9+WxsoOckg==}
+  '@sentry/types@8.48.0':
+    resolution: {integrity: sha512-3Ad38BF9b+sVRh7ag8jryHuqVOzQ4mBKjT6vnm+jQz45Qbhri//LSdhhJ7KpiSm3/EYpRjQekTr6mjYZmfOaeA==}
     engines: {node: '>=14.18'}
 
   '@sentry/utils@7.114.0':
@@ -8575,6 +8579,8 @@ snapshots:
 
   '@sentry/core@8.47.0': {}
 
+  '@sentry/core@8.48.0': {}
+
   '@sentry/integrations@7.114.0':
     dependencies:
       '@sentry/core': 7.114.0
@@ -8595,9 +8601,9 @@ snapshots:
 
   '@sentry/types@7.114.0': {}
 
-  '@sentry/types@8.47.0':
+  '@sentry/types@8.48.0':
     dependencies:
-      '@sentry/core': 8.47.0
+      '@sentry/core': 8.48.0
 
   '@sentry/utils@7.114.0':
     dependencies:
