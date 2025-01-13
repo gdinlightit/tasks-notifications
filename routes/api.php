@@ -29,7 +29,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::prefix('v1')
-    ->middleware('api')
     ->name('api.')
     ->group(static function () {
         Route::prefix('users')
